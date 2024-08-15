@@ -1,4 +1,4 @@
-AI Flashcards
+# AI Flashcards
 
 Authors: [Aamir Khan](https://github.com/Akhan521), [Anna Lee](https://github.com/annlee1226), [Falak Tulsi](https://github.com/Tech13-08)
 
