@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+AI Flashcards
+
+Authors: [Aamir Khan](https://github.com/Akhan521), [Anna Lee](https://github.com/annlee1226), [Falak Tulsi](https://github.com/Tech13-08)
 
 ## Getting Started
 
