@@ -8,6 +8,9 @@ import {
   Typography,
   Box,
 } from '@mui/material'
+import { useUser } from '@clerk/nextjs'
+import { collection, doc, getDoc, writeBatch } from 'firebase/firestore'
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Grid, Card, CardContent } from '@mui/material'
 
 export default function Generate() {
   const [text, setText] = useState('')
