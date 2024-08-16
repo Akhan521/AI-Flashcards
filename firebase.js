@@ -1,5 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { getFirebase } from 'firebase/firestore';
+
 const firebaseConfig = {
     apiKey: "AIzaSyCzMhLjg9RLBmbz4nmacEZDb0qnTJ5OLEo",
     authDomain: "ai-flashcards-e6117.firebaseapp.com",
