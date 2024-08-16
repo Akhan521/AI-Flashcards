@@ -33,7 +33,7 @@ export async function POST(req){
     const data = await req.text();
 
     const completion = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
+        model: "gpt-4o-mini",
         messages: [
             {role: "system", content: systemPrompt},
             {role: "user", content: data}
@@ -41,7 +41,9 @@ export async function POST(req){
         response_format: {type: 'json_object'}
     })
 
+    console.log(completion.choices[0].message.content);
+
     const flashcards = JSON.parse(completion.choices[0].message.content);
 
-    return NextResponse.json(flashcards.flashcard);
+    return NextResponse.json(flashcards.flashcards);
 }

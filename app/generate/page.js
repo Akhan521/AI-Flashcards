@@ -2,8 +2,25 @@
 import {useUser} from "@clerk/nextjs";
 import {useState} from "react";
 import {useRouter} from "next/navigation";
-import { collection, writeBatch } from "firebase/firestore";
-import { Box, Container, Paper, Typography, TextField, Button, Card } from "@mui/material";
+import { 
+    Box,
+    Container,
+    Paper,
+    Typography,
+    TextField,
+    Button,
+    Card,
+    Dialog,
+    DialogContent,
+    DialogContentText,
+    DialogActions,
+    DialogTitle,
+    CardActionArea,
+    CardContent,
+    Grid
+ } from "@mui/material";
+import { db } from "@/firebase";
+import { doc, getDoc, setDoc, collection, writeBatch } from "firebase/firestore";
 
 export default function Generate(){
     const {isLoaded, isSignedIn, user} = useUser();
@@ -113,43 +130,97 @@ export default function Generate(){
                         mt: 4,
                     }}
                 >
-                    <Typography variant='h5'>Flashcards Preview</Typography>
+                    <Typography variant='h5' gutterBottom>Flashcards Preview</Typography>
                     <Grid container spacing = {3}>
                         {flashcards.map((flashcard, index) => (
                             <Grid item xs={12} sm={6} md={4} key={index}>
                                 <Card>
-                                    <CardActionArea onClick={() => handleCardFlip(index)}></CardActionArea>
-                                    <CardContent>
-                                        <Box
-                                            sx={{
-                                                perspective: '1000px',
-                                                '& > div': {
-                                                    transition: '0.6s',
-                                                    transformStyle: 'preserve-3d',
-                                                    position: 'relative',
-                                                    height: '200px',
-                                                    width: '100%',
-                                                    boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
-                                                    transform: flipped[index] ? 'rotateY(180deg)' : 'rotateY(0deg)',
-                                                },
-                                            }}
-                                        >
-                                            <div>
+                                    <CardActionArea onClick={() => handleCardFlip(index)}>
+                                        <CardContent>
+                                            <Box
+                                                sx={{
+                                                    perspective: '1000px',
+                                                    '& > div': {
+                                                        transition: '0.6s',
+                                                        transformStyle: 'preserve-3d',
+                                                        position: 'relative',
+                                                        height: '200px',
+                                                        width: '100%',
+                                                        boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
+                                                        transform: flipped[index] ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                                                    },
+                                                    '& > div > div': {
+                                                        position: 'absolute',
+                                                        height: '100%',
+                                                        width: '100%',
+                                                        backfaceVisibility: 'hidden',
+                                                        display: 'flex',
+                                                        justifyContent: 'center',
+                                                        alignItems: 'center',
+                                                        padding: 2,
+                                                        boxSizing: 'border-box',
+                                                    },
+                                                    '& > div > div:nth-of-type(2)': {
+                                                        transform: 'rotateY(180deg)',
+                                                    },
+                                                }}
+                                            >
                                                 <div>
-                                                    <Typography variant='h5' component='div'>{flashcard.front}</Typography>
+                                                    <div>
+                                                        <Typography variant='h5' component="div">
+                                                            {flashcard.front}
+                                                        </Typography>
+                                                    </div>
+                                                    <div>
+                                                        <Typography variant='h5' component="div">
+                                                            {flashcard.back}
+                                                        </Typography>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <Typography variant='h5' component='div'>{flashcard.back}</Typography>
-                                                </div>
-                                            </div>
-                                        </Box>
-                                    </CardContent>
+                                            </Box>
+                                        </CardContent>
+                                    </CardActionArea>
                                 </Card>
                             </Grid>
                         ))}
                     </Grid>
+                    <Box sx={{
+                        mt: 4,
+                        display: 'flex',
+                        justifyContent: 'center',
+                        gap: 2,
+                    }}>
+                        <Button variant='contained' color='secondary' onClick={handleOpen}>Save Deck</Button>
+                    </Box>
                 </Box>
             )}
+
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Save Deck</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Please enter a name for your flashcard deck.
+                    </DialogContentText>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        label="Deck Name"
+                        type="text"
+                        fullWidth
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        variant="outlined"
+                    />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Cancel
+                        </Button>
+                        <Button onClick={handleSave} color="primary">
+                            Save
+                        </Button>
+                    </DialogActions>
+            </Dialog>
 
         </Container>
     )
