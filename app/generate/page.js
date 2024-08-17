@@ -96,17 +96,33 @@ export default function Generate(){
     };
 
     return (
-        <Container maxWidth='md'>
-            <Box sx={{
-                mt: 4,
-                mb: 6,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: 2}}
+        <Container maxWidth='100vw' 
+        style={{
+            width: '100%',
+            height: '100vh',
+            margin: 0,
+            padding: 0,
+        }}
+        sx={{
+            bgcolor: '#181B1E',
+            color: 'white',
+          }}>
+            <Box 
+                style={{
+                    padding:20,
+                }}
+                sx={{
+                    mb: 6,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: 2
+                }}
             >
-                <Typography variant='h4'>Generate Flashcards</Typography>
-                <Paper sx={{p: 4, width: '100%'}}>
+                <Typography variant='h4' sx={{
+                    mt: 4,
+                }}>Generate Flashcards</Typography>
+                <Paper sx={{p: 4, width: '100%', mb: 2}}>
                     <TextField value={text}
                         onChange={(e) => setText(e.target.value)}
                         label='Enter Text' 
@@ -126,11 +142,19 @@ export default function Generate(){
 
             {flashcards.length > 0 && (
                 <Box
+                    style={{
+                        padding:20,
+                    }}
                     sx={{
                         mt: 4,
+                        bgcolor: '#181B1E',
+                        color: 'white',
                     }}
                 >
-                    <Typography variant='h5' gutterBottom>Flashcards Preview</Typography>
+                    <Typography variant='h4' gutterBottom sx={{
+                        textAlign: 'center',
+                        mb: 4,
+                    }}>Flashcards Preview</Typography>
                     <Grid container spacing = {3}>
                         {flashcards.map((flashcard, index) => (
                             <Grid item xs={12} sm={6} md={4} key={index}>
@@ -190,7 +214,9 @@ export default function Generate(){
                         justifyContent: 'center',
                         gap: 2,
                     }}>
-                        <Button variant='contained' color='secondary' onClick={handleOpen}>Save Deck</Button>
+                        <Button variant='contained' color='secondary' onClick={handleOpen} sx={{
+                            mb: 2,
+                        }}>Save Deck</Button>
                     </Box>
                 </Box>
             )}

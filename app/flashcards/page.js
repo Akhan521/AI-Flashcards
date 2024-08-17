@@ -47,8 +47,22 @@ export default function Flashcards(){
     };
 
     return (
-        <Container maxWidth='100vw'>
-            <Grid container spacing={3} sx={{mt:4}}>
+        <Container maxWidth='100vw' 
+        style={{
+            width: '100%',
+            height: '100vh',
+            margin: 0,
+            padding: 0,
+        }}
+        sx={{
+            bgcolor: '#181B1E',
+            color: 'white',
+        }}>
+            <Typography variant='h4' style={{padding: 20}} sx={{
+                textAlign: 'center',
+            }}
+            >Flashcard Decks</Typography>
+            <Grid container spacing={3} style={{padding: 20}}>
                 {flashcards.map((flashcard, index) => (
                     <Grid item xs={12} sm={6} md={4} key={index}>
                         <Card>

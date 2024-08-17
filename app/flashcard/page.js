@@ -60,8 +60,28 @@ export default function Flashcard(){
     }
 
     return (
-        <Container maxWidth='100vw'>
-            <Grid container spacing={3} sx={{mt:4}}>
+        <Container maxWidth='100vw'
+        style={{
+            width: '100%',
+            height: '100%',
+            margin: 0,
+            paddingLeft: 45,
+            paddingRight: 20,
+            paddingTop: 40,
+            paddingBottom: 20,
+        }}
+        sx={{
+            bgcolor: '#181B1E',
+            color: 'white',
+        }}
+        >
+            <Typography variant='h4' style={{padding: 20,}} sx={{
+                mb: 4,
+                textAlign: 'center',
+            }}
+            >Deck: {search}
+            </Typography>
+            <Grid container spacing = {3}>
                 <Grid container spacing = {3}>
                     {flashcards.map((flashcard, index) => (
                         <Grid item xs={12} sm={6} md={4} key={index}>
