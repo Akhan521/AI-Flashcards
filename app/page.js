@@ -4,6 +4,7 @@ import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Box, AppBar, Button, Container, Toolbar, Typography, Grid } from "@mui/material";
 import Head from "next/head";
 import Spline from "@splinetool/react-spline";
+import { useUser } from "@clerk/nextjs";
 
 export default function Home() {
 
@@ -31,6 +32,8 @@ export default function Home() {
       console.warn(error.message);
     }
   }
+
+  const {isLoaded, isSignedIn, user} = useUser();
 
   return (
     
@@ -69,7 +72,7 @@ export default function Home() {
         mt: -5,
       }}>
         <Typography variant="h5" align="center" gutterBottom> Create and manage flashcards with ease. </Typography>
-        <Button variant="contained" color="primary" href="/generate" sx={{mt:2}}> Get Started </Button>
+        <Button variant="contained" color="primary" href={user ? "/generate" : "/sign-in"} sx={{mt:2}}> Get Started </Button>
       </Box>
       <Box sx={{my: 6, textAlign: 'center'}} style={{padding: 15}}>
         <Typography variant="h4" gutterBottom> Features </Typography>

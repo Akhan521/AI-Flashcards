@@ -4,12 +4,12 @@ import Link from "next/link";
 
 export default function SignUpPage(){
     return (
-        <Container maxWidth='100vw'>
+        <Container maxWidth='100vw' style={{margin:0, padding:0}}>
             <AppBar position='static'>
             <Toolbar>
                 <Typography variant='h6' sx={{
                     flexGrow: 1
-                }}>Flashcard SaaS</Typography>
+                }}>RecallAI</Typography>
                 <Button color='inherit'>
                     <Link href='/sign-in' passHref>
                         Login
@@ -29,7 +29,9 @@ export default function SignUpPage(){
                 alignItems='center'
                 justifyContent='center'
             >
-                <Typography variant="h4" gutterBottom>Sign In</Typography>
+                <Typography variant="h4" gutterBottom sx={{
+                    mt: 4,
+                }}>Sign In</Typography>
                 <SignIn />
             </Box> 
         </Container>
