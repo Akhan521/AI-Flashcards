@@ -106,7 +106,14 @@ export default function Generate(){
         sx={{
             bgcolor: '#181B1E',
             color: 'white',
-          }}>
+        }}>
+            <Box sx={{
+                display: 'flex',
+                justifyContent: 'right',
+                padding: 1,
+            }}>
+                <Button variant='contained' color='primary' href='/flashcards'>View Decks</Button>
+            </Box>
             <Box 
                 style={{
                     padding:20,

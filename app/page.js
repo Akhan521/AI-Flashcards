@@ -137,7 +137,7 @@ export default function Home() {
                 {" "}
                 Access to basic features and limited storage.
                  </Typography>
-                 <Button variant="contained" color="primary" sx={{mt:2}} href="/generate"> Start Now</Button>
+                 <Button variant="contained" color="primary" sx={{mt:2}} href={user ? "/generate" : "/sign-in"}> Start Now</Button>
             </Box>
           </Grid>
           <Grid item xs={12} md={6}>

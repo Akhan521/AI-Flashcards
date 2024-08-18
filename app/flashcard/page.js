@@ -66,8 +66,8 @@ export default function Flashcard(){
             height: '100%',
             margin: 0,
             paddingLeft: 45,
-            paddingRight: 20,
-            paddingTop: 40,
+            paddingRight: 10,
+            paddingTop: 10,
             paddingBottom: 20,
         }}
         sx={{
@@ -75,13 +75,24 @@ export default function Flashcard(){
             color: 'white',
         }}
         >
+            <Box sx={{
+                display: 'flex',
+                justifyContent: 'right',
+            }}>
+                <Button variant='contained' color='primary' href='/generate' sx={{
+                    marginRight: 1,
+                }}>Create New Deck</Button>
+                <Button variant='contained' color='primary' href='/flashcards'>View Decks</Button>
+            </Box>
             <Typography variant='h4' style={{padding: 20,}} sx={{
                 mb: 4,
                 textAlign: 'center',
             }}
             >Deck: {search}
             </Typography>
-            <Grid container spacing = {3}>
+            <Grid container spacing = {3} style={{
+                paddingRight: 15,
+            }}>
                 <Grid container spacing = {3}>
                     {flashcards.map((flashcard, index) => (
                         <Grid item xs={12} sm={6} md={4} key={index}>

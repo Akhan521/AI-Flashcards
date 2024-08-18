@@ -11,7 +11,9 @@ import {
     Card,
     CardActionArea,
     CardContent,
-    Typography
+    Typography,
+    Box,
+    Button
 } from "@mui/material";
 
 
@@ -58,6 +60,13 @@ export default function Flashcards(){
             bgcolor: '#181B1E',
             color: 'white',
         }}>
+            <Box sx={{
+                display: 'flex',
+                justifyContent: 'right',
+                padding: 1,
+            }}>
+                <Button variant='contained' color='primary' href='/generate'>Create New Deck</Button>
+            </Box>
             <Typography variant='h4' style={{padding: 20}} sx={{
                 textAlign: 'center',
             }}
