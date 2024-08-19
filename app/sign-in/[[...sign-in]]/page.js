@@ -27,7 +27,11 @@ export default function SignInPage(){
             >
                 <Typography variant="h4" gutterBottom sx={{
                     mt: 4,
-                }}>Sign In</Typography>
+                    // setting the text to be a gradient color:
+                    background: 'linear-gradient(90deg, rgba(161,152,237,1) 0%, rgba(115,144,255,1) 25%, rgba(88,137,232,1) 50%, rgba(155,215,244,1) 75%, rgba(111,194,210,1) 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                }}>Journey to Mastery</Typography>
                 <SignIn />
             </Box> 
         </Container>
