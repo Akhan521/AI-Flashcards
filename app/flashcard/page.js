@@ -22,6 +22,7 @@ import {
     CardContent,
     Grid
  } from "@mui/material";
+import { motion } from "framer-motion";
 
 export default function Flashcard(){
     const {isLoaded, isSignedIn, user} = useUser();
@@ -64,17 +65,21 @@ export default function Flashcard(){
         style={{
             width: '100%',
             height: '100%',
-            margin: 0,
-            paddingLeft: 45,
-            paddingRight: 10,
             paddingTop: 10,
             paddingBottom: 20,
+            paddingRight: 10,
         }}
         sx={{
             bgcolor: '#181B1E',
             color: 'white',
         }}
         >
+            <motion.div
+            // animating the page entrance with a clip path
+            initial={{ clipPath: "polygon(0 0, 0 100%, 0 100%, 0 0)" }}
+            animate={{ clipPath: "polygon(0 0, 0 100%, 100% 100%, 100% 0)" }}
+            transition={{ duration: 1.5 }}
+            >
             <Box sx={{
                 display: 'flex',
                 justifyContent: 'right',
@@ -87,13 +92,18 @@ export default function Flashcard(){
             <Typography variant='h4' style={{padding: 20,}} sx={{
                 mb: 4,
                 textAlign: 'center',
+                // setting the text to be a gradient color:
+                background: 'linear-gradient(90deg, rgba(153,143,238,1) 0%, rgba(109,134,232,1) 25%, rgba(111,194,210,1) 50%, rgba(145,219,255,1) 75%, rgba(0,180,255,1) 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
             }}
             >Deck: {search}
             </Typography>
-            <Grid container spacing = {3} style={{
-                paddingRight: 15,
-            }}>
-                <Grid container spacing = {3}>
+            <Grid container spacing = {3}>
+                <Grid container spacing = {3} style={{
+                    paddingLeft: 25,
+                    paddingRight: 15,
+                }}>
                     {flashcards.map((flashcard, index) => (
                         <Grid item xs={12} sm={6} md={4} key={index}>
                             <Card>
@@ -129,12 +139,12 @@ export default function Flashcard(){
                                         >
                                             <div>
                                                 <div>
-                                                    <Typography variant='h5' component="div">
+                                                    <Typography variant='h5' component="div" sx={{textAlign:'center'}}>
                                                         {flashcard.front}
                                                     </Typography>
                                                 </div>
                                                 <div>
-                                                    <Typography variant='h5' component="div">
+                                                    <Typography variant='h5' component="div" sx={{textAlign:'center'}}>
                                                         {flashcard.back}
                                                     </Typography>
                                                 </div>
@@ -147,6 +157,7 @@ export default function Flashcard(){
                     ))}
                 </Grid>
             </Grid>
+            </motion.div>
         </Container>
     )
 }

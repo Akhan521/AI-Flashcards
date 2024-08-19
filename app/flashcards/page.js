@@ -15,6 +15,7 @@ import {
     Box,
     Button
 } from "@mui/material";
+import { motion } from "framer-motion";
 
 
 export default function Flashcards(){
@@ -60,6 +61,12 @@ export default function Flashcards(){
             bgcolor: '#181B1E',
             color: 'white',
         }}>
+            <motion.div
+            // animating the page entrance with a clip path
+            initial={{ clipPath: "polygon(0 0, 0 100%, 0 100%, 0 0)" }}
+            animate={{ clipPath: "polygon(0 0, 0 100%, 100% 100%, 100% 0)" }}
+            transition={{ duration: 1.5 }}
+            >
             <Box sx={{
                 display: 'flex',
                 justifyContent: 'right',
@@ -69,6 +76,10 @@ export default function Flashcards(){
             </Box>
             <Typography variant='h4' style={{padding: 20}} sx={{
                 textAlign: 'center',
+                // setting the text to be a gradient color:
+                background: 'linear-gradient(90deg, rgba(153,143,238,1) 0%, rgba(109,134,232,1) 25%, rgba(111,194,210,1) 50%, rgba(145,219,255,1) 75%, rgba(0,180,255,1) 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
             }}
             >Flashcard Decks</Typography>
             <Grid container spacing={3} style={{padding: 20}}>
@@ -77,13 +88,14 @@ export default function Flashcards(){
                         <Card>
                             <CardActionArea onClick={() => handleCardFlip(flashcard.name)}>
                                 <CardContent>
-                                    <Typography variant='h6'>{flashcard.name}</Typography>
+                                    <Typography variant='h6' sx={{textAlign:'center'}}>{flashcard.name}</Typography>
                                 </CardContent>
                             </CardActionArea>
                         </Card>
                     </Grid>
                 ))}
             </Grid>
+            </motion.div>
         </Container>
     )
 }

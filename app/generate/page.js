@@ -21,6 +21,7 @@ import {
  } from "@mui/material";
 import { db } from "@/firebase";
 import { doc, getDoc, setDoc, collection, writeBatch } from "firebase/firestore";
+import { motion } from "framer-motion";
 
 export default function Generate(){
     const {isLoaded, isSignedIn, user} = useUser();
@@ -33,11 +34,13 @@ export default function Generate(){
 
     const handleSubmit = async () => {
         fetch('api/generate', {
-            method: 'POST',
-            body: text,  
-    }).then((response) => response.json()).then((data) => {
-        setFlashcards(data);
-    });
+                method: 'POST',
+                body: text,  
+        }).then((response) => response.json()).then((data) => {
+            setFlashcards(data);
+        });
+        // When we submit our text, we want to reset the flipped state of all cards.
+        setFlipped(new Array(flashcards.length).fill(false));
     };
 
     const handleCardFlip = (id) => {
@@ -107,11 +110,20 @@ export default function Generate(){
             bgcolor: '#181B1E',
             color: 'white',
         }}>
+            <motion.div
+            // animating the page entrance with a clip path
+            initial={{ clipPath: "polygon(0 0, 0 100%, 0 100%, 0 0)" }}
+            animate={{ clipPath: "polygon(0 0, 0 100%, 100% 100%, 100% 0)" }}
+            transition={{ duration: 1 }}
+            >
             <Box sx={{
                 display: 'flex',
                 justifyContent: 'right',
                 padding: 1,
             }}>
+                <Button variant='contained' color='primary' href='/' sx={{
+                    marginRight: 1,
+                }}>Home</Button>
                 <Button variant='contained' color='primary' href='/flashcards'>View Decks</Button>
             </Box>
             <Box 
@@ -128,11 +140,15 @@ export default function Generate(){
             >
                 <Typography variant='h4' sx={{
                     mt: 4,
+                    // setting the text to be a gradient color:
+                    background: 'linear-gradient(90deg, rgba(153,143,238,1) 0%, rgba(109,134,232,1) 25%, rgba(111,159,210,1) 50%, rgba(145,175,255,1) 75%, rgba(0,137,255,1) 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
                 }}>Generate Flashcards</Typography>
                 <Paper sx={{p: 4, width: '100%', mb: 2}}>
                     <TextField value={text}
                         onChange={(e) => setText(e.target.value)}
-                        label='Enter Text' 
+                        label='Enter Text to Create Flashcards From' 
                         multiline rows={4}
                         fullWidth
                         variant='outlined' 
@@ -161,6 +177,10 @@ export default function Generate(){
                     <Typography variant='h4' gutterBottom sx={{
                         textAlign: 'center',
                         mb: 4,
+                        // setting the text to be a gradient color:
+                        background: 'linear-gradient(90deg, rgba(153,143,238,1) 0%, rgba(109,134,232,1) 25%, rgba(111,159,210,1) 50%, rgba(145,175,255,1) 75%, rgba(0,137,255,1) 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
                     }}>Flashcards Preview</Typography>
                     <Grid container spacing = {3}>
                         {flashcards.map((flashcard, index) => (
@@ -198,12 +218,16 @@ export default function Generate(){
                                             >
                                                 <div>
                                                     <div>
-                                                        <Typography variant='h5' component="div">
+                                                        <Typography variant='h5' component="div" sx={{
+                                                            textAlign: 'center',
+                                                        }}>
                                                             {flashcard.front}
                                                         </Typography>
                                                     </div>
                                                     <div>
-                                                        <Typography variant='h5' component="div">
+                                                        <Typography variant='h5' component="div" sx={{
+                                                            textAlign: 'center',
+                                                        }}>
                                                             {flashcard.back}
                                                         </Typography>
                                                     </div>
@@ -254,7 +278,7 @@ export default function Generate(){
                         </Button>
                     </DialogActions>
             </Dialog>
-
+            </motion.div>
         </Container>
     )
 }

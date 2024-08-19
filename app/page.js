@@ -5,6 +5,7 @@ import { Box, AppBar, Button, Container, Toolbar, Typography, Grid } from "@mui/
 import Head from "next/head";
 import Spline from "@splinetool/react-spline";
 import { useUser } from "@clerk/nextjs";
+import { motion } from "framer-motion";
 
 export default function Home() {
 
@@ -71,27 +72,59 @@ export default function Home() {
         my: 4,
         mt: -5,
       }}>
-        <Typography variant="h5" align="center" gutterBottom> Create and manage flashcards with ease. </Typography>
+        <Typography variant="h5" align="center" gutterBottom sx={{
+          // setting the text to be a gradient color:
+          background: 'linear-gradient(90deg, rgba(227,225,244,1) 0%, rgba(84,84,224,1) 25%, rgba(88,137,232,1) 50%, rgba(145,219,255,1) 75%, rgba(0,212,255,1) 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}> Create and manage flashcards with ease. </Typography>
         <Button variant="contained" color="primary" href={user ? "/generate" : "/sign-in"} sx={{mt:2}}> Get Started </Button>
       </Box>
       <Box sx={{my: 6, textAlign: 'center'}} style={{padding: 15}}>
-        <Typography variant="h4" gutterBottom> Features </Typography>
+        <Typography variant="h4" gutterBottom sx={{
+          // setting the text to be a gradient color:
+          background: 'linear-gradient(90deg, rgba(206,203,244,1) 0%, rgba(47,47,213,1) 25%, rgba(88,137,232,1) 50%, rgba(145,219,255,1) 75%, rgba(0,212,255,1) 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}> Features </Typography>
         <Grid container spacing = {4}>
           <Grid item xs={12} md={4}>
-          <Box sx={{
-              p: 3,
-              border: '1px solid',
-              borderColor: 'grey.300',
-              borderRadius: 2,
-              minHeight: 150,
-            }}>
-            <Typography variant="h6" gutterBottom> Smart Flashcards </Typography>
-            <Typography gutterBottom> 
-              {" "}
-              Our AI intelligently breaks down your text into concise flashcards, perfect for studying. </Typography>
-          </Box>
+            <motion.div 
+              whileHover={{
+                scale: 0.9,
+                boxShadow: '0 0 10px rgba(145,219,255,1)',
+                borderRadius: 12,
+                transition: 'box-shadow 0.3s ease-in-out',
+              }}
+            >
+              <Box sx={{
+                  p: 3,
+                  border: '1px solid',
+                  borderColor: 'grey.300',
+                  borderRadius: 2,
+                  minHeight: 150,
+                }}>
+                <Typography variant="h6" gutterBottom sx={{
+                  // setting the text to be a gradient color:
+                  background: 'linear-gradient(90deg, rgba(227,225,244,1) 0%, rgba(155,84,224,1) 25%, rgba(189,60,214,1) 50%, rgba(255,145,239,1) 75%, rgba(223,0,255,1) 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}> Smart & Brief Flashcards </Typography>
+                <Typography gutterBottom> 
+                  {" "}
+                  Our AI wisely breaks down your text into concise flashcards, designed for active recall. </Typography>
+              </Box>
+          </motion.div>
           </Grid>
             <Grid item xs={12} md={4}>
+            <motion.div 
+              whileHover={{
+                scale: 0.9,
+                boxShadow: '0 0 10px rgba(145,219,255,1)',
+                borderRadius: 12,
+                transition: 'box-shadow 0.3s ease-in-out',
+              }}
+            >
             <Box sx={{
               p: 3,
               border: '1px solid',
@@ -99,13 +132,27 @@ export default function Home() {
               borderRadius: 2,
               minHeight: 150,
             }}>
-              <Typography variant="h6" gutterBottom > Simple to use and learn. </Typography>
+              <Typography variant="h6" gutterBottom sx={{
+                  // setting the text to be a gradient color:
+                  background: 'linear-gradient(90deg, rgba(227,225,244,1) 0%, rgba(155,84,224,1) 25%, rgba(189,60,214,1) 50%, rgba(255,145,239,1) 75%, rgba(223,0,255,1) 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}> Simple to use and learn. </Typography>
               <Typography gutterBottom> 
                 {" "}
-                Study with ease. </Typography>
+                Focus more on studying with less distractions. RecallAI keeps studying to-the-point. </Typography>
             </Box>
+            </motion.div>
           </Grid>
           <Grid item xs={12} md={4}>
+          <motion.div 
+              whileHover={{
+                scale: 0.9,
+                boxShadow: '0 0 10px rgba(145,219,255,1)',
+                borderRadius: 12,
+                transition: 'box-shadow 0.3s ease-in-out',
+              }}
+            >
           <Box sx={{
               p: 3,
               border: '1px solid',
@@ -113,25 +160,49 @@ export default function Home() {
               borderRadius: 2,
               minHeight: 150,
             }}>
-            <Typography variant="h6" gutterBottom> Easily generate flashcards using AI. </Typography>
+            <Typography variant="h6" gutterBottom sx={{
+                  // setting the text to be a gradient color:
+                  background: 'linear-gradient(90deg, rgba(227,225,244,1) 0%, rgba(155,84,224,1) 25%, rgba(189,60,214,1) 50%, rgba(255,145,239,1) 75%, rgba(223,0,255,1) 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}> Personalized Flashcards </Typography>
             <Typography gutterBottom> 
               {" "}
-              Let our AI generate flashcards for you based on the content you provide. </Typography>
+              Let RecallAI create flashcards for you based on the content you provide. </Typography>
           </Box>
+          </motion.div>
           </Grid>
         </Grid>
       </Box>
       <Box sx={{my: 6, textAlign: 'center'}} style={{padding: 15}}>
-        <Typography variant="h4" gutterBottom> Pricing </Typography>
+        <Typography variant="h4" gutterBottom sx={{
+          // setting the text to be a gradient color:
+          background: 'linear-gradient(90deg, rgba(206,203,244,1) 0%, rgba(47,47,213,1) 25%, rgba(88,137,232,1) 50%, rgba(145,219,255,1) 75%, rgba(0,212,255,1) 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}> Pricing </Typography>
         <Grid container spacing = {4}>
           <Grid item xs={12} md={6}>
+          <motion.div 
+              whileHover={{
+                scale: 0.9,
+                boxShadow: '0 0 10px rgba(145,219,255,1)',
+                borderRadius: 12,
+                transition: 'box-shadow 0.3s ease-in-out',
+              }}
+            >
             <Box sx={{
               p: 3,
               border: '1px solid',
               borderColor: 'grey.300',
               borderRadius: 2,
             }}>
-              <Typography variant="h6" gutterBottom> Basic </Typography>
+              <Typography variant="h6" gutterBottom sx={{
+                  // setting the text to be a gradient color:
+                  background: 'linear-gradient(90deg, rgba(227,225,244,1) 0%, rgba(155,84,224,1) 25%, rgba(189,60,214,1) 50%, rgba(255,145,239,1) 75%, rgba(223,0,255,1) 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}> Basic </Typography>
               <Typography variant="h6" gutterBottom> Free </Typography>
               <Typography gutterBottom> 
                 {" "}
@@ -139,8 +210,17 @@ export default function Home() {
                  </Typography>
                  <Button variant="contained" color="primary" sx={{mt:2}} href={user ? "/generate" : "/sign-in"}> Start Now</Button>
             </Box>
+            </motion.div>
           </Grid>
           <Grid item xs={12} md={6}>
+          <motion.div 
+              whileHover={{
+                scale: 0.9,
+                boxShadow: '0 0 10px rgba(145,219,255,1)',
+                borderRadius: 12,
+                transition: 'box-shadow 0.3s ease-in-out',
+              }}
+            >
             <Box sx={{
               p: 3,
               border: '1px solid',
@@ -148,7 +228,12 @@ export default function Home() {
               borderRadius: 2,
               mb: 2,
             }}>
-              <Typography variant="h6" gutterBottom> Pro </Typography>
+              <Typography variant="h6" gutterBottom  sx={{
+                  // setting the text to be a gradient color:
+                  background: 'linear-gradient(90deg, rgba(227,225,244,1) 0%, rgba(155,84,224,1) 25%, rgba(189,60,214,1) 50%, rgba(255,145,239,1) 75%, rgba(223,0,255,1) 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}> Pro </Typography>
               <Typography variant="h6" gutterBottom> $5 / Month </Typography>
               <Typography gutterBottom> 
                 {" "}
@@ -162,6 +247,7 @@ export default function Home() {
                 > Choose Pro
               </Button>
             </Box>
+            </motion.div>
           </Grid>
         </Grid>
       </Box>
