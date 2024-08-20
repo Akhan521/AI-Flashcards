@@ -168,7 +168,7 @@ export default function Generate(){
             </Box>
 
             {loading ? (
-                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
+                <Box style={{height: '100%'}} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <CircularProgress color="primary" />
                 </Box>
             ) : (
